@@ -6,6 +6,8 @@ input{
   background-color: #F13030;
   border: 0;
   color: white;
+  padding: .5rem;
+  margin-bottom: 1rem;
 }input:focus {
   background-color: #F13030;
   border: 0;
@@ -18,4 +20,13 @@ button{
   border: 0;
   background-color: #F13030;
   color: white;
+  padding: .5rem;
+}
+.flexy{
+  display: flex;
+  flex-direction: column;
+}
+a{
+  color: #F13030;
+  
 }

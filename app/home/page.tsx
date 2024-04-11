@@ -7,8 +7,11 @@ export default async function Home() {
   return (
     <section>
       <h1>This is home</h1>
-      <Link href="/prof">Profile Page </Link>
+      <div className="flexy">
+        <Link href="/prof">Profile Page </Link>
       <Link href="/">Login page</Link>
+      </div>
+      
     </section>
   );
 }

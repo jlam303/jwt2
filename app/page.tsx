@@ -5,7 +5,7 @@ export default async function log() {
   const session = await getSession()
   return (
     <>
-    <form action={async (formdata)=>{
+    <form className="flexy" action={async (formdata)=>{
       "use server"
         await login(formdata)
       }}>
