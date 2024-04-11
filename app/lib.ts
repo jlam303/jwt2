@@ -1,4 +1,3 @@
-
 import { SignJWT,jwtVerify } from "jose";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
@@ -11,7 +10,7 @@ export async function encrypt(payload:any){
     return await new SignJWT(payload)
     .setProtectedHeader({alg:'HS256'})
     .setIssuedAt()
-    .setExpirationTime("20 sec")
+    .setExpirationTime("100 sec")
     .sign(key)
 }
 
@@ -21,15 +20,15 @@ export async function decrypt(input:string):Promise<any>{
 }
 
 export async function login(formData:FormData){
-    if(formData.get("email")==="jlam303@west-mec.org"&& formData.get("password")=="2222" ){
-        let user ={email:formData.get("email"),password:formData.get("password"),name:"J"}
-        const expires = new Date(Date.now()+10*1000)
+    if(formData.get("email")==="jlam303@west-mec.org"&& formData.get("password")==process.env.PASS ){
+        let user ={email:formData.get("email"),password:formData.get("password"),name:"Jonathan Lam"}
+        const expires = new Date(Date.now()+100*1000)
         const session = await encrypt({user,expires})
         cookies().set("session",session,{expires,httpOnly:true})
-        redirect("/")
+        redirect("/home")
     }
     else{
-    redirect("/login")
+    redirect("/")
     }
     
 }
@@ -46,7 +45,7 @@ export async function updateSession(request:NextRequest){
     if(!session) return;
 
     const parsed = await decrypt(session)
-    parsed.expires = new Date(Date.now()+10*1000);
+    parsed.expires = new Date(Date.now()+100*1000);
     const res = NextResponse.next();
     res.cookies.set({
         name:"session",

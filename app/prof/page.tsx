@@ -7,6 +7,7 @@ export default async function Prof() {
   return (
     <>
     <h1>This is profile page</h1>
+    
       <h1>Welcome {session.user.name}</h1>
       <h1>Email: {session.user.email}</h1>
       <form action={async ()=>{
@@ -14,9 +15,10 @@ export default async function Prof() {
         await logout()
         redirect('/')
       }}>
-      <Link href="/">Home Page </Link>
+      
         <button type="submit">Logout</button>
       </form>
+      <Link href="/home">Home Page </Link>
     </>
   );
 }
