@@ -5,7 +5,6 @@ const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
 const usersRoute = require('./routes/usersController');
-const blogsRoute = require('./routes/blogsController');
 
 const connectDB = require('./db/connect');
 
@@ -19,7 +18,6 @@ app.get('/', (req, res) => {
 });
 
 app.use('/users', usersRoute);
-app.use('/blogs', blogsRoute);
 
 const initServer = async () => {
   try {

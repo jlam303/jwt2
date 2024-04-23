@@ -1,2 +1,1 @@
-# jwt2
- 
+# jwtMastery

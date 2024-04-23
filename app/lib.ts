@@ -20,14 +20,14 @@ export async function decrypt(input:string):Promise<any>{
 }
 
 export async function login(formData:FormData){
-    let people:any;
-    await fetch('http://localhost:5000/users')
+    console.log("E")
+    let people = await fetch('http://localhost:5000/users')
   .then(response => {
    return response.json();
-  }).then(res => {
-   people= res;
   })
+  console.log(people)
   people.map(async (persony) => {
+    console.log(formData.get("email"),formData.get("password"),persony.password)
    if(formData.get("email") === persony.email && formData.get("password") === persony.password){
     let user ={email:formData.get("email"),password:formData.get("password")}
         const expires = new Date(Date.now()+100*1000)
@@ -38,7 +38,22 @@ export async function login(formData:FormData){
   })
     redirect("/") 
 }
-
+export async function signup(formData:FormData){
+    let email = formData.get("email")
+    let password = formData.get("password")
+    
+    await fetch('http://localhost:5000/users', {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({email, password }),
+    })
+  .then(response => {
+   return response.json();
+  }).then(res => {
+    redirect("/") 
+  })
+}
 export async function logout(){
     cookies().set("session","",{expires:new Date(0)})
 }
