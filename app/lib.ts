@@ -20,25 +20,18 @@ export async function decrypt(input:string):Promise<any>{
 }
 
 export async function login(formData:FormData){
-    let people:any;
-    await fetch('http://localhost:5000/users')
-  .then(response => {
-   return response.json();
-  }).then(res => {
-   people= res;
-  })
-  people.map(async (persony) => {
-   if(formData.get("email") === persony.email && formData.get("password") === persony.password){
-    let user ={email:formData.get("email"),password:formData.get("password")}
+    if(formData.get("email")==="jlam303@west-mec.org"&& formData.get("password")==process.env.PASS ){
+        let user ={email:formData.get("email"),password:formData.get("password"),name:"Jonathan Lam"}
         const expires = new Date(Date.now()+100*1000)
         const session = await encrypt({user,expires})
         cookies().set("session",session,{expires,httpOnly:true})
         redirect("/home")
-   }
-  })
-    redirect("/") 
+    }
+    else{
+    redirect("/")
+    }
+    
 }
-
 export async function logout(){
     cookies().set("session","",{expires:new Date(0)})
 }
