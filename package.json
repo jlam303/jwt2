@@ -1,5 +1,5 @@
 {
-  "name": "jwt2",
+  "name": "jwtmastery",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "concurrently": "^8.2.2",
     "jose": "^5.2.3",
     "next": "14.1.4",
     "react": "^18",
