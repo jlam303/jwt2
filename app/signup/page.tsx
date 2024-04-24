@@ -1,4 +1,6 @@
 import { redirect } from "next/navigation";
+import Link from "next/link"
+
 import {getSession,signup} from "../lib"
 import "../login.css"
 export default async function page() {
@@ -13,6 +15,8 @@ export default async function page() {
         <input type="password" name="password" id="password" placeholder="Password"/>
         <button type="submit">Sign Up</button>
       </form>
+      <Link href="/signup">Sign Up Page</Link>
+
     </>
   );
 }

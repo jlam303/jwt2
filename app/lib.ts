@@ -20,23 +20,32 @@ export async function decrypt(input:string):Promise<any>{
 }
 
 export async function login(formData:FormData){
-    console.log("E")
     let people = await fetch('http://localhost:5000/users')
   .then(response => {
    return response.json();
   })
-  console.log(people)
-  people.map(async (persony) => {
-    console.log(formData.get("email"),formData.get("password"),persony.password)
-   if(formData.get("email") === persony.email && formData.get("password") === persony.password){
-    let user ={email:formData.get("email"),password:formData.get("password")}
-        const expires = new Date(Date.now()+100*1000)
-        const session = await encrypt({user,expires})
-        cookies().set("session",session,{expires,httpOnly:true})
-        redirect("/home")
-   }
+  let good:boolean = false
+  people.map(async(persony) => {
+    if(formData.get("email") == persony.email && formData.get("password") == persony.password){
+      good=true
+        
+    }
   })
-    redirect("/") 
+  if(good){
+    let user ={email:formData.get("email"),password:formData.get("password")}
+            const expires = new Date(Date.now()+100*1000)
+            const session = await encrypt({user,expires})
+            cookies().set("session",session,{expires,httpOnly:true})
+  redirect("/home")
+
+}else{
+  console.log("why")
+
+  redirect("/") 
+}
+  
+  
+
 }
 export async function signup(formData:FormData){
     let email = formData.get("email")

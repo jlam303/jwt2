@@ -9,7 +9,9 @@ export default async function Home() {
       <h1>This is home</h1>
       <div className="flexy">
         <Link href="/prof">Profile Page </Link>
-      <Link href="/">Login page</Link>
+      <Link href="/">Login Page</Link>
+      <Link href="/signup">Sign Up Page</Link>
+
       </div>
       
     </section>
