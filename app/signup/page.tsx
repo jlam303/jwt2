@@ -15,7 +15,7 @@ export default async function page() {
         <input type="password" name="password" id="password" placeholder="Password"/>
         <button type="submit">Sign Up</button>
       </form>
-      <Link href="/signup">Sign Up Page</Link>
+      <Link href="/">Login Page</Link>
 
     </>
   );
